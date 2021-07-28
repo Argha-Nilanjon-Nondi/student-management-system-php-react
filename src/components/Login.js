@@ -54,7 +54,8 @@ export default class Login extends Component {
               }
           })
           .then((response)=>{
-              if(response.data.code==="3003"){
+              console.log(response.data)
+              if(response.data.code==="3000"){
                 this.setState({
                     creditSend:false,
                     passwordIncorrect:true

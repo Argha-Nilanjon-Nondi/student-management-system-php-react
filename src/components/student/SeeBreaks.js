@@ -15,9 +15,9 @@ export default class SeeBreaks extends Component {
   }
 
   breakDelete = (workdate, time) => {
-      this.setState({
-          loadingStatus:true
-      })
+    this.setState({
+      loadingStatus: true,
+    });
     axios({
       method: "post",
       url: `http://${document.location.hostname}/student-management-system/student.php`,
@@ -31,20 +31,35 @@ export default class SeeBreaks extends Component {
       },
     })
       .then((response) => {
-        this.setState({
-          errorContent: (
-            <Alert
-              type="success"
-              symbol="Delete Break"
-              text="Student Break is successfully deleted"
-            ></Alert>
-          ),
-          loadingStatus: false,
-        });
-        this.updateBreakList();
+        if (response.data.code === "2097") {
+          this.setState({
+            errorContent: (
+              <Alert
+                type="success"
+                symbol="Delete Break"
+                text="Student Break is successfully deleted"
+              ></Alert>
+            ),
+            loadingStatus: false,
+          });
+          this.updateBreakList();
+        }
+
+        if (response.data.code[0] === "3") {
+          this.setState({
+            loadingStatus: false,
+            errorContent: (
+              <Alert
+                type="warning"
+                symbol="Incorrect"
+                text={response.data.message}
+              ></Alert>
+            ),
+          });
+        }
       })
       .catch((err) => {
-          this.updateBreakList();
+        this.updateBreakList();
         this.setState({
           errorContent: (
             <Alert
@@ -72,10 +87,24 @@ export default class SeeBreaks extends Component {
       },
     })
       .then((response) => {
-        this.setState({
-          breakList: response.data.data.breaks,
-          loadingStatus: false,
-        });
+        if (response.data.code === "2043") {
+          this.setState({
+            breakList: response.data.data.breaks,
+            loadingStatus: false,
+          });
+        }
+        if (response.data.code[0] === "3") {
+          this.setState({
+            loadingStatus: false,
+            errorContent: (
+              <Alert
+                type="warning"
+                symbol="Incorrect"
+                text={response.data.message}
+              ></Alert>
+            ),
+          });
+        }
       })
       .catch((err) => {
         this.setState({

@@ -100,6 +100,19 @@ export default class StudentProfile extends Component {
           });
         }
 
+        if (response.data.code[0] === "3") {
+          this.setState({
+            loadingStatus: false,
+            errorContent: (
+              <Alert
+                type="warning"
+                symbol="Incorrect"
+                text={response.data.message}
+              ></Alert>
+            ),
+          });
+        }
+
         if (response.data.code == "3018") {
           this.setState({
             userRedirect: true,

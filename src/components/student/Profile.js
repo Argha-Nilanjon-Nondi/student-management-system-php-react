@@ -49,6 +49,19 @@ export default class Profile extends Component {
             contactno: StudentData.contactno,
           });
         }
+
+        if (response.data.code[0] === "3") {
+          this.setState({
+            loadingStatus: false,
+            errorContent: (
+              <Alert
+                type="warning"
+                symbol="Incorrect"
+                text={response.data.message}
+              ></Alert>
+            ),
+          });
+        }
       })
       .catch((error) => {
         this.setState({

@@ -37,6 +37,7 @@ export default class TeacherPannel extends Component {
       },
     })
       .then((response) => {
+        if(response.data.code==="2021"){
         this.setState({
           errorContent: (
             <Alert
@@ -46,6 +47,20 @@ export default class TeacherPannel extends Component {
             ></Alert>
           ),
         });
+        }
+
+        if (response.data.code[0] === "3") {
+          this.setState({
+            loadingStatus: false,
+            errorContent: (
+              <Alert
+                type="warning"
+                symbol="Incorrect"
+                text={response.data.message}
+              ></Alert>
+            ),
+          });
+        }
       })
       .catch((err) => {
         this.setState({
@@ -75,10 +90,26 @@ export default class TeacherPannel extends Component {
       },
     })
       .then((response) => {
+        if(response.data.code==="2043"){
         this.setState({
           studentList: response.data.data,
           loadingStatus: false,
         });
+        }
+
+        if (response.data.code[0] === "3") {
+          this.setState({
+            loadingStatus: false,
+            errorContent: (
+              <Alert
+                type="warning"
+                symbol="Incorrect"
+                text={response.data.message}
+              ></Alert>
+            ),
+          });
+        }
+
       })
       .catch((err) => {
         this.setState({

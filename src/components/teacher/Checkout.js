@@ -22,28 +22,22 @@ export default class Checkout extends Component {
 
   addCheckoutInState = (event) => {
     event.preventDefault();
-
-    let newcheckoutList = this.state.checkoutList;
-    if (this.state.roll != 0 && this.state.datetime != "") {
-      if (newcheckoutList.length == 0) {
-        newcheckoutList.push({
-          roll: this.state.roll,
-          datetime: this.state.datetime,
-        });
-
+    let singleData = [
+      {
+        roll: this.state.roll,
+        datetime: this.state.datetime,
+      }
+    ];
+    if (this.state.roll != 0 || this.state.datetime != "") {
+      if (this.state.checkoutList.length == 0) {
         this.setState({
-          checkoutList: newcheckoutList,
+          checkoutList: this.state.checkoutList.concat(singleData)
         });
       }
-      newcheckoutList.map((obj) => {
+      this.state.checkoutList.map((obj) => {
         if (obj["roll"] != this.state.roll) {
-          newcheckoutList.push({
-            roll: this.state.roll,
-            datetime: this.state.datetime,
-          });
-
           this.setState({
-            checkoutList: newcheckoutList,
+            checkoutList: this.state.checkoutList.concat(singleData)
           });
         }
       });

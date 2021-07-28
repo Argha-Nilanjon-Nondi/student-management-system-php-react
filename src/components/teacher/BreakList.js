@@ -39,16 +39,31 @@ export default class BreakList extends Component {
       },
     })
       .then((response) => {
-          this.updateBreakList();
-        this.setState({
-          errorContent: (
-            <Alert
-              type="success"
-              symbol="Update successs"
-              text="The break is updated successfully"
-            ></Alert>
-          ),
-        });
+        this.updateBreakList();
+        if (response.data.code === "2026") {
+          this.setState({
+            errorContent: (
+              <Alert
+                type="success"
+                symbol="Update successs"
+                text="The break is updated successfully"
+              ></Alert>
+            ),
+          });
+        }
+
+        if (response.data.code[0] === "3") {
+          this.setState({
+            loadingStatus: false,
+            errorContent: (
+              <Alert
+                type="warning"
+                symbol="Incorrect"
+                text={response.data.message}
+              ></Alert>
+            ),
+          });
+        }
       })
       .catch((err) => {
         this.setState({
@@ -78,10 +93,25 @@ export default class BreakList extends Component {
       },
     })
       .then((response) => {
-        this.setState({
-          breakList: response.data.data,
-          loadingStatus: false,
-        });
+        if (response.data.code === "2022") {
+          this.setState({
+            breakList: response.data.data,
+            loadingStatus: false,
+          });
+        }
+
+        if (response.data.code[0] === "3") {
+          this.setState({
+            loadingStatus: false,
+            errorContent: (
+              <Alert
+                type="warning"
+                symbol="Incorrect"
+                text={response.data.message}
+              ></Alert>
+            ),
+          });
+        }
       })
       .catch((err) => {
         this.setState({

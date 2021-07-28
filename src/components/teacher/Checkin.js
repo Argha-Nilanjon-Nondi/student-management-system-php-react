@@ -1,125 +1,137 @@
-import React, { Component,Fragment } from 'react'
-import LoadingBar from '../LoadingBar'
-import Alert from '../Alert'
-import axios from 'axios'
+import React, { Component, Fragment } from "react";
+import LoadingBar from "../LoadingBar";
+import Alert from "../Alert";
+import axios from "axios";
 
 export default class Checkin extends Component {
   constructor(props) {
-    super(props)
-  
+    super(props);
+
     this.state = {
-       roll:0,
-       datetime:"",
-       attend:"PR",
-       checkinList:[],
-       loadingStatus:true,
-       errorContent:(<></>),
-    }
+      roll: 0,
+      datetime: "",
+      attend: "PR",
+      checkinList: [],
+      loadingStatus: true,
+      errorContent: <></>,
+    };
   }
 
-  checkin=(roll,date,attend,checkintime)=>{
+  checkin = (roll, date, attend, checkintime) => {};
 
-  }
+  handleField = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
 
-  handleField=(event)=>{
-     this.setState({
-       [event.target.name]:event.target.value
-     })
-  }
-
-  addCheckinInState=(event)=>{
+  addCheckinInState = (event) => {
     event.preventDefault();
-
-    let newCheckinList=this.state.checkinList;
-    if((this.state.roll!=0) && (this.state.datetime!="") && (this.state.attend!="")){
-      if(newCheckinList.length==0){
-        newCheckinList.push(
-          {
-            "roll":this.state.roll,
-            "datetime":this.state.datetime,
-            "attend":this.state.attend
-          }
-        );
-
-          this.setState({
-             checkinList:newCheckinList
-          }); 
+    let singleData = [
+      {
+        roll: this.state.roll,
+        datetime: this.state.datetime,
+        attend: this.state.attend
       }
-          newCheckinList.map((obj)=>{
-          if((obj["roll"]!=this.state.roll)){
-               newCheckinList.push(
-                 {
-                   "roll":this.state.roll,
-                   "datetime":this.state.datetime,
-                   "attend":this.state.attend
-                 }
-               );
-      
-                 this.setState({
-                    checkinList:newCheckinList
-                 });
-          }
+    ];
+    if (
+      this.state.roll != 0 ||
+      this.state.datetime != "" ||
+      this.state.attend != ""
+    ) {
+      if (this.state.checkinList.length == 0) {
+        this.setState({
+          checkinList: this.state.checkinList.concat(singleData)
         });
-      
+      }
+      this.state.checkinList.map((obj) => {
+        if (obj["roll"] != this.state.roll) {
+          this.setState({
+            checkinList:this.state.checkinList.concat(singleData)
+          });
+        }
+      });
     }
-  }
+    console.log(this.state.checkinList)
+  };
 
-  addCheckinInDB=(roll,datetime,attend)=>{
-    let studentRoll=`"${roll}"`
-    let studentAttend=attend;
-    let checkinDate=datetime.split("T")[0]
-    let checkinTime=datetime.split("T")[1]
+  addCheckinInDB = (roll, datetime, attend) => {
+    let studentRoll = `"${roll}"`;
+    let studentAttend = attend;
+    let checkinDate = datetime.split("T")[0];
+    let checkinTime = datetime.split("T")[1];
 
     this.setState({
-      errorContent:(<Alert type="warning" symbol="Wait" text={`Roll:${roll} Student operation is on the way .`}></Alert>)
+      errorContent: (
+        <Alert
+          type="warning"
+          symbol="Wait"
+          text={`Roll:${roll} Student operation is on the way .`}
+        ></Alert>
+      ),
     });
-    
+
     axios({
-      method: 'post',
+      method: "post",
       url: `http://${document.location.hostname}/student-management-system/teacher.php`,
       data: {
-        "token":localStorage.token,
-         "action":"create-checkin",
-          "data":{
-            "roll":studentRoll,
-            "date":checkinDate,
-            "checkin":checkinTime,
-            "presenttype":studentAttend
-          }
-      }
+        token: localStorage.token,
+        action: "create-checkin",
+        data: {
+          roll: studentRoll,
+          date: checkinDate,
+          checkin: checkinTime,
+          presenttype: studentAttend,
+        },
+      },
     })
-    .then((response)=>{
-        if(response.data.code=="2035"){
-            this.setState({
-              errorContent:<Alert type="success" symbol="Checkin Success" text="Student is successfully checkedin"></Alert>
-            })
+      .then((response) => {
+        if (response.data.code == "2035") {
+          this.setState({
+            errorContent: (
+              <Alert
+                type="success"
+                symbol="Checkin Success"
+                text="Student is successfully checkedin"
+              ></Alert>
+            ),
+          });
         }
 
-        if(response.data.code[0]=="3"){
+        if (response.data.code[0] == "3") {
           this.setState({
-            errorContent:(<Alert type="warning" symbol="Warning" text={response.data.message}></Alert>)
+            errorContent: (
+              <Alert
+                type="warning"
+                symbol="Warning"
+                text={response.data.message}
+              ></Alert>
+            ),
           });
-       }
+        }
+      })
+      .catch((error) => {
+        this.setState({
+          errorContent: (
+            <Alert
+              type="danger"
+              symbol="Network Error"
+              text="There is an error in the network"
+            ></Alert>
+          ),
+        });
+      });
+  };
 
+  deleteCheckinFromState = (obj) => {
+    let removeItem = obj;
+    let studentCheckinList = this.state.checkinList;
+    let UpdatedCheckinList = studentCheckinList.filter(
+      (item) => item != removeItem
+    );
+    this.setState({ checkinList: UpdatedCheckinList });
+  };
 
-    })
-    .catch((error)=>{
-      this.setState({
-          errorContent:(<Alert type="danger" symbol="Network Error" text="There is an error in the network"></Alert>)
-        })
-    });
-  }
-
-  deleteCheckinFromState=(obj)=>{
-
-    let removeItem=obj;
-    let studentCheckinList=this.state.checkinList;
-    let UpdatedCheckinList=studentCheckinList.filter(item=>item != removeItem);
-    this.setState({checkinList:UpdatedCheckinList}); 
-
-  }
-
-  
   render() {
     return (
       <Fragment>
@@ -194,15 +206,9 @@ export default class Checkin extends Component {
             <table className="table my-2">
               <thead>
                 <tr>
-                  <th scope="col">
-                    Roll
-                  </th>
-                  <th scope="col">
-                    Date and Time
-                  </th>
-                  <th scope="col">
-                    Attend
-                  </th>
+                  <th scope="col">Roll</th>
+                  <th scope="col">Date and Time</th>
+                  <th scope="col">Attend</th>
                   <th scope="col">Setting</th>
                 </tr>
               </thead>

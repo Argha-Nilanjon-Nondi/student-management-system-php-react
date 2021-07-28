@@ -75,12 +75,37 @@ export default class TeacherPannel extends Component {
       },
     })
       .then((response) => {
-        console.log(response.data.data);
-        this.setState({
-          teacherList: response.data.data,
-          loadingStatus: false,
-        });
-        console.log(this.state.teacherList);
+        if (response.data.code[0] === "3") {
+          this.setState({
+            loadingStatus: false,
+            errorContent: (
+              <Alert
+                type="warning"
+                symbol="Incorrect"
+                text={response.data.message}
+              ></Alert>
+            ),
+          });
+        }
+        if (response.data.code === "2053") {
+          this.setState({
+            teacherList: response.data.data,
+            loadingStatus: false,
+          });
+        }
+
+        if (response.data.code[0] === "3") {
+          this.setState({
+            loadingStatus: false,
+            errorContent: (
+              <Alert
+                type="warning"
+                symbol="Incorrect"
+                text={response.data.message}
+              ></Alert>
+            ),
+          });
+        }
       })
       .catch((err) => {
         this.setState({

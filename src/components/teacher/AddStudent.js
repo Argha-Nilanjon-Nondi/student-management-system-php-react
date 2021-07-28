@@ -58,6 +58,7 @@ export default class AddStudent extends Component {
             }
           })
           .then((response)=>{
+              console.log(response.data)
               if(response.data.code[0]==="3"){
                  this.setState({
                      loadingStatus:false,
