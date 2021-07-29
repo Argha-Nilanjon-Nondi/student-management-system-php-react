@@ -180,7 +180,7 @@ export default class TeacherPannel extends Component {
             </div>
           </div>
         ))}
-        <div className="container my-2 d-flex align-items-center flex-column table-responsive">
+        <div className="container my-2 table-responsive">
           {this.state.loadingStatus ? (
             <LoadingBar></LoadingBar>
           ) : (
@@ -196,7 +196,7 @@ export default class TeacherPannel extends Component {
               <tbody>
                 {this.state.studentList.map((obj) => (
                   <tr key={obj.userid}>
-                    <td>{obj.username}</td>
+                    <td className="first-row-item">{obj.username}</td>
                     <td>{obj.userid}</td>
                     <td>{obj.roll}</td>
                     <td>

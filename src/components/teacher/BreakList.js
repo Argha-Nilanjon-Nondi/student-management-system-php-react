@@ -152,7 +152,7 @@ export default class BreakList extends Component {
                 {this.state.breakList.map((obj) => (
                   <tr key={obj.workdate}>
                     <td>{obj.roll}</td>
-                    <td>{obj.reason}</td>
+                    <td className="first-row-item">{obj.reason}</td>
                     <td>
                       <input
                         type="datetime-local"

@@ -127,7 +127,7 @@ export default class SeeBreaks extends Component {
     return (
       <Fragment>
         {this.state.errorContent}
-        <div className="container my-2 d-flex align-items-center flex-column table-responsive">
+        <div className="container my-2 table-responsive">
           {this.state.loadingStatus ? (
             <LoadingBar></LoadingBar>
           ) : (
@@ -143,7 +143,7 @@ export default class SeeBreaks extends Component {
               <tbody>
                 {this.state.breakList.map((obj) => (
                   <tr key={obj.workdate}>
-                    <td>{obj.reason}</td>
+                    <td className="first-row-item">{obj.reason}</td>
                     <td>
                       <input
                         type="datetime-local"

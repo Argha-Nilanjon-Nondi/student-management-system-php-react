@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import LoadingBar from './LoadingBar'
 
 export default class Not_found extends Component {
     render() {

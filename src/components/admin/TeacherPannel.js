@@ -197,7 +197,7 @@ export default class TeacherPannel extends Component {
               <tbody>
                 {this.state.teacherList.map((obj) => (
                   <tr key={obj.userid}>
-                    <td>{obj.username}</td>
+                    <td className="first-row-item">{obj.username}</td>
                     <td>{obj.userid}</td>
                     <td>{obj.class}</td>
                     <td>{obj.section}</td>

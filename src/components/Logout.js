@@ -27,7 +27,7 @@ export default class Logout extends Component {
         return(<Fragment>
             <LoadingBar className="mt-4" style={{margin:"0 auto"}}></LoadingBar>
             {
-              this.state.loginRedirect?<Redirect to="/login"></Redirect>:""
+              this.state.loginRedirect?<Redirect to="/login/"></Redirect>:""
             }
         </Fragment>)
     }

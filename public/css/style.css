@@ -1,0 +1,12 @@
+.first-row-item{
+    width:40%;
+}
+
+@media screen and (max-width:1000px) {
+   .table-responsive{
+       overflow-y:scroll !important ;
+   }
+   .table{
+       width: 150% !important;
+   }
+}

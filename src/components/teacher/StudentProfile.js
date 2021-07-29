@@ -319,7 +319,7 @@ export default class StudentProfile extends Component {
                           />
                         </td>
 
-                        <td>{obj.reason}</td>
+                        <td className="first-row-item">{obj.reason}</td>
                         <td>
                           {obj.status === "pending" ? (
                             <button className="btn btn-primary">Pending</button>
