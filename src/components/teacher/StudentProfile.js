@@ -294,180 +294,205 @@ export default class StudentProfile extends Component {
             </Fragment>
           )}
 
-          <div className="container mt-1">
+          <div className="container">
             {this.state.loadingStatus2 ? (
               <LoadingBar></LoadingBar>
             ) : (
-              <div className="table-responsive">
-                <table className="table my-2">
-                  <thead>
-                    <tr>
-                      <th scope="col">Date And Time</th>
-                      <th scope="col">Reason</th>
-                      <th scope="col">Current Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.state.breakList.map((obj) => (
-                      <tr key={obj.workdate}>
-                        <td>
-                          <input
-                            type="datetime-local"
-                            className="form-control"
-                            value={`${obj.workdate}T${obj.timetext}`}
-                            disabled
-                          />
-                        </td>
+              <Fragment>
+                <h1 className="mt-2 fs-4 text-center">Breaks List</h1>
+                <div className="row my-2 gap-2 justify-content-center">
+                  {this.state.breakList.map((obj) => (
+                    <div
+                      className="col-lg-3 col-11 border border-dark rounded px-1 py-1"
+                      key={obj.workdate}
+                    >
+                      <div>
+                        {obj.status === "pending" ? (
+                          <button className="btn btn-primary">Pending</button>
+                        ) : (
+                          ""
+                        )}
+                        {obj.status === "accept" ? (
+                          <button className="btn btn-success">Accept</button>
+                        ) : (
+                          ""
+                        )}
+                        {obj.status === "reject" ? (
+                          <button className="btn btn-danger">Reject</button>
+                        ) : (
+                          ""
+                        )}
+                      </div>
 
-                        <td className="first-row-item">{obj.reason}</td>
-                        <td>
-                          {obj.status === "pending" ? (
-                            <button className="btn btn-primary">Pending</button>
-                          ) : (
-                            ""
-                          )}
-                          {obj.status === "accept" ? (
-                            <button className="btn btn-success">Accept</button>
-                          ) : (
-                            ""
-                          )}
-                          {obj.status === "reject" ? (
-                            <button className="btn btn-danger">Reject</button>
-                          ) : (
-                            ""
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                      <textarea className="form-control my-1">
+                        {obj.reason}
+                      </textarea>
+
+                      <input
+                        type="datetime-local"
+                        className="form-control my-1"
+                        value={`${obj.workdate}T${obj.timetext}`}
+                        disabled
+                      />
+                    </div>
+                  ))}
+                </div>
+              </Fragment>
             )}
           </div>
-          <div className="container mt-2">
+          <div className="container">
             {this.state.loadingStatus3 ? (
               <LoadingBar></LoadingBar>
             ) : (
-              <div className="table-responsive">
-                <table className="table my-2">
-                  <thead>
-                    <tr>
-                      <th scope="col">Date</th>
-                      <th scope="col">Checkin Time</th>
-                      <th scope="col">Checkout Time</th>
-                      <th scope="col">Attend</th>
-                      <th className="col" scope="col">
-                        Setting
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.state.checkList.map((obj) => (
-                      <Fragment>
-                        <div
-                          className="modal fade"
-                          key={`id${obj["workdate"]}999`}
-                          id={`cssid${obj["workdate"]}`}
-                          tabIndex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <div className="modal-dialog">
-                            <div className="modal-content">
-                              <div className="modal-header">
-                                <h5
-                                  className="modal-title"
-                                  id="exampleModalLabel"
-                                >
-                                  Delete Check
-                                </h5>
-                                <button
-                                  type="button"
-                                  className="btn-close"
-                                  data-bs-dismiss="modal"
-                                  aria-label="Close"
-                                  onClick={this.getCheckAndBreakData}
-                                ></button>
-                              </div>
-                              <div className="modal-body">
-                                Do you want to delete the check on{" "}
-                                {obj["workdate"]} of roll {rollid} ?
-                              </div>
-                              <div className="modal-footer">
-                                <button
-                                  type="button"
-                                  className="btn btn-secondary"
-                                  data-bs-dismiss="modal"
-                                  onClick={this.getCheckAndBreakData}
-                                >
-                                  Close
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-primary"
-                                  onClick={() =>
-                                    this.deleteCheck(rollid, obj["workdate"])
-                                  }
-                                >
-                                  Delete Check
-                                </button>
-                              </div>
+              <Fragment>
+                <h1 className="mt-4 fs-4 text-center">Checks List</h1>
+                <div className="row my-2 gap-2 justify-content-center">
+                  {this.state.checkList.map((obj) => (
+                    <Fragment>
+                      <div
+                        className="modal fade"
+                        key={`id${obj["workdate"]}999`}
+                        id={`cssid${obj["workdate"]}`}
+                        tabIndex="-1"
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true"
+                      >
+                        <div className="modal-dialog">
+                          <div className="modal-content">
+                            <div className="modal-header">
+                              <h5
+                                className="modal-title"
+                                id="exampleModalLabel"
+                              >
+                                Delete Check
+                              </h5>
+                              <button
+                                type="button"
+                                className="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                                onClick={this.getCheckAndBreakData}
+                              ></button>
+                            </div>
+                            <div className="modal-body">
+                              Do you want to delete the check on{" "}
+                              {obj["workdate"]} of roll {rollid} ?
+                            </div>
+                            <div className="modal-footer">
+                              <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                                onClick={this.getCheckAndBreakData}
+                              >
+                                Close
+                              </button>
+                              <button
+                                type="button"
+                                className="btn btn-primary"
+                                onClick={() =>
+                                  this.deleteCheck(rollid, obj["workdate"])
+                                }
+                              >
+                                Delete Check
+                              </button>
                             </div>
                           </div>
                         </div>
+                      </div>
+                      <div
+                        className="col-lg-3 col-11 border border-dark rounded px-1 py-1"
+                        key={""}
+                      >
+                        <div className="my-1 d-flex">
+                          <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Checkin date"
+                          >
+                            <i class="far fa-clock"></i>
+                          </button>
+                          <input
+                            className="mx-1 form-control"
+                            type="date"
+                            value={obj["workdate"]}
+                            disabled
+                          />
+                        </div>
 
-                        <tr key={`${obj["workdate"]}09099`}>
-                          <td>
-                            <input
-                              type="date"
-                              className="form-control"
-                              value={obj["workdate"]}
-                              disabled
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="time"
-                              className="form-control"
-                              value={obj["checkin"]}
-                              disabled
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="time"
-                              className="form-control"
-                              value={obj["checkout"]}
-                              disabled
-                            />
-                          </td>
-                          <td>
-                            <select
-                              className="form-select"
-                              value={obj["presenttype"]}
-                              disabled
-                            >
-                              <option value="PR">Present</option>
-                              <option value="AB">Absent</option>
-                            </select>
-                          </td>
-                          <td>
-                            {" "}
-                            <button
-                              type="button"
-                              className="btn btn-dark mx-1 my-1"
-                              data-bs-toggle="modal"
-                              data-bs-target={`#cssid${obj["workdate"]}`}
-                            >
-                              Delete Check
-                            </button>
-                          </td>
-                        </tr>
-                      </Fragment>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                        <div className="my-1 d-flex">
+                          <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Checkin time"
+                          >
+                            <i class="fas fa-user-clock"></i>
+                          </button>
+                          <input
+                            className="mx-1 form-control"
+                            type="time"
+                            value={obj["checkin"]}
+                            disabled
+                          />
+                        </div>
+
+                        <div className="my-1 d-flex">
+                          <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Checkout time"
+                          >
+                            <i class="fas fa-user-clock"></i>
+                          </button>
+                          <input
+                            className="mx-1 form-control"
+                            type="time"
+                            value={obj["checkout"]}
+                            disabled
+                          />
+                        </div>
+
+                        <div className="my-1 d-flex">
+                          <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Attend"
+                          >
+                            <i class="fas fa-concierge-bell"></i>
+                          </button>
+                          <select
+                            className="form-select mx-1"
+                            value={obj["presenttype"]}
+                            disabled
+                          >
+                            <option value="PR">Present</option>
+                            <option value="AB">Absent</option>
+                          </select>
+                        </div>
+
+                        <div className="my-1 d-flex justify-content-center">
+                          <button
+                            type="button"
+                            className="btn btn-dark mx-1 my-1"
+                            data-bs-toggle="modal"
+                            data-bs-target={`#cssid${obj["workdate"]}`}
+                          >
+                            Delete Check
+                          </button>
+                        </div>
+                      </div>
+                    </Fragment>
+                  ))}
+                </div>
+              </Fragment>
             )}
           </div>
         </div>

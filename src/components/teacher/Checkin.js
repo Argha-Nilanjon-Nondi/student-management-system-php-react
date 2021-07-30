@@ -31,8 +31,8 @@ export default class Checkin extends Component {
       {
         roll: this.state.roll,
         datetime: this.state.datetime,
-        attend: this.state.attend
-      }
+        attend: this.state.attend,
+      },
     ];
     if (
       this.state.roll != 0 ||
@@ -41,18 +41,18 @@ export default class Checkin extends Component {
     ) {
       if (this.state.checkinList.length == 0) {
         this.setState({
-          checkinList: this.state.checkinList.concat(singleData)
+          checkinList: this.state.checkinList.concat(singleData),
         });
       }
       this.state.checkinList.map((obj) => {
         if (obj["roll"] != this.state.roll) {
           this.setState({
-            checkinList:this.state.checkinList.concat(singleData)
+            checkinList: this.state.checkinList.concat(singleData),
           });
         }
       });
     }
-    console.log(this.state.checkinList)
+    console.log(this.state.checkinList);
   };
 
   addCheckinInDB = (roll, datetime, attend) => {
@@ -202,71 +202,83 @@ export default class Checkin extends Component {
               Add
             </button>
           </form>
-          <div className="table-responsive">
-            <table className="table my-2">
-              <thead>
-                <tr>
-                  <th scope="col">Roll</th>
-                  <th scope="col">Date and Time</th>
-                  <th scope="col">Attend</th>
-                  <th scope="col">Setting</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.checkinList.map((obj) => (
-                  <tr key={obj["roll"]}>
-                    <td>
-                      <input
-                        type="number"
-                        className="form-control"
-                        value={obj["roll"]}
-                        disabled
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="datetime-local"
-                        className="form-control"
-                        value={obj["datetime"]}
-                        disabled
-                      />
-                    </td>
-                    <td>
-                      <select
-                        className="form-select"
-                        value={obj["attend"]}
-                        disabled
-                      >
-                        <option value="PR">Present</option>
-                        <option value="AB">Absent</option>
-                      </select>
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        className="btn btn-dark mx-1 my-1"
-                        onClick={() =>
-                          this.addCheckinInDB(
-                            obj["roll"],
-                            obj["datetime"],
-                            obj["attend"]
-                          )
-                        }
-                      >
-                        Checkin
-                      </button>
-                      <button
-                        type="button"
-                        className="btn btn-dark mx-1 my-1"
-                        onClick={() => this.deleteCheckinFromState(obj)}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="row my-2 gap-2 justify-content-center">
+            {this.state.checkinList.map((obj) => (
+              <div
+                className="col-lg-3 col-11 border border-dark rounded px-1 py-1"
+                key={""}
+              >
+                <div>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Roll"
+                  >
+                    {obj["roll"]}
+                  </button>
+                </div>
+                <div className="my-1 d-flex">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Checkin date and time"
+                  >
+                    <i class="far fa-clock"></i>
+                  </button>
+                  <input
+                    className="mx-1 form-control"
+                    type="datetime-local"
+                    value={obj["datetime"]}
+                    disabled
+                  />
+                </div>
+                <div className="my-1 d-flex">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Attend"
+                  >
+                    <i class="fas fa-concierge-bell"></i>
+                  </button>
+                  <select
+                    className="form-select mx-1"
+                    value={obj["attend"]}
+                    disabled
+                  >
+                    <option value="PR">Present</option>
+                    <option value="AB">Absent</option>
+                  </select>
+                </div>
+                <div className="my-1 d-flex justify-content-center">
+                  <button
+                    type="button"
+                    class="btn btn-dark"
+                    onClick={() =>
+                      this.addCheckinInDB(
+                        obj["roll"],
+                        obj["datetime"],
+                        obj["attend"]
+                      )
+                    }
+                  >
+                    Checkin
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-dark mx-1"
+                    onClick={() => this.deleteCheckinFromState(obj)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </Fragment>

@@ -229,115 +229,143 @@ export default class Profile extends Component {
             </Fragment>
           )}
 
-          <div className="container mt-1">
+          <div className="container">
             {this.state.loadingStatus2 ? (
               <LoadingBar></LoadingBar>
             ) : (
-              <div className="table-responsive">
-                <table className="table my-2">
-                  <thead>
-                    <tr>
-                      <th scope="col">Date And Time</th>
-                      <th scope="col">Reason</th>
-                      <th scope="col">Current Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.state.breakList.map((obj) => (
-                      <tr key={obj.workdate}>
-                        <td>
-                          <input
-                            type="datetime-local"
-                            className="form-control"
-                            value={`${obj.workdate}T${obj.timetext}`}
-                            disabled
-                          />
-                        </td>
+              <Fragment>
+                <h1 className="mt-2 fs-4 text-center">Breaks List</h1>
+                <div className="row my-2 gap-2 justify-content-center">
+                  {this.state.breakList.map((obj) => (
+                    <div
+                      className="col-lg-3 col-11 border border-dark rounded px-1 py-1"
+                      key={obj.workdate}
+                    >
+                      <div>
+                        {obj.status === "pending" ? (
+                          <button className="btn btn-primary">Pending</button>
+                        ) : (
+                          ""
+                        )}
+                        {obj.status === "accept" ? (
+                          <button className="btn btn-success">Accept</button>
+                        ) : (
+                          ""
+                        )}
+                        {obj.status === "reject" ? (
+                          <button className="btn btn-danger">Reject</button>
+                        ) : (
+                          ""
+                        )}
+                      </div>
 
-                        <td className="first-row-item">{obj.reason}</td>
-                        <td>
-                          {obj.status === "pending" ? (
-                            <button className="btn btn-primary">Pending</button>
-                          ) : (
-                            ""
-                          )}
-                          {obj.status === "accept" ? (
-                            <button className="btn btn-success">Accept</button>
-                          ) : (
-                            ""
-                          )}
-                          {obj.status === "reject" ? (
-                            <button className="btn btn-danger">Reject</button>
-                          ) : (
-                            ""
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                      <textarea className="form-control my-1">
+                        {obj.reason}
+                      </textarea>
+
+                      <input
+                        type="datetime-local"
+                        className="form-control my-1"
+                        value={`${obj.workdate}T${obj.timetext}`}
+                        disabled
+                      />
+                    </div>
+                  ))}
+                </div>
+              </Fragment>
             )}
           </div>
-          <div className="container mt-2">
+          <div className="container">
             {this.state.loadingStatus3 ? (
               <LoadingBar></LoadingBar>
             ) : (
-              <div className="table-responsive">
-                <table className="table my-2">
-                  <thead>
-                    <tr>
-                      <th scope="col">Date</th>
-                      <th scope="col">Checkin Time</th>
-                      <th scope="col">Checkout Time</th>
-                      <th scope="col">Attend</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.state.checkList.map((obj) => (
-                      <Fragment>
+              <Fragment>
+                <h1 className="mt-4 fs-4 text-center">Checks List</h1>
+                <div className="row my-2 gap-2 justify-content-center">
+                  {this.state.checkList.map((obj) => (
+                    <Fragment>
+                      <div
+                        className="col-lg-3 col-11 border border-dark rounded px-1 py-1"
+                        key={""}
+                      >
+                        <div className="my-1 d-flex">
+                          <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Checkin date"
+                          >
+                            <i class="far fa-clock"></i>
+                          </button>
+                          <input
+                            className="mx-1 form-control"
+                            type="date"
+                            value={obj["workdate"]}
+                            disabled
+                          />
+                        </div>
 
-                        <tr key={`${obj["workdate"]}09099`}>
-                          <td>
-                            <input
-                              type="date"
-                              className="form-control"
-                              value={obj["workdate"]}
-                              disabled
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="time"
-                              className="form-control"
-                              value={obj["checkin"]}
-                              disabled
-                            />
-                          </td>
-                          <td>
-                            <input
-                              type="time"
-                              className="form-control"
-                              value={obj["checkout"]}
-                              disabled
-                            />
-                          </td>
-                          <td>
-                            <select
-                              className="form-select"
-                              value={obj["presenttype"]}
-                              disabled
-                            >
-                              <option value="PR">Present</option>
-                              <option value="AB">Absent</option>
-                            </select>
-                          </td>
-                        </tr>
-                      </Fragment>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                        <div className="my-1 d-flex">
+                          <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Checkin time"
+                          >
+                            <i class="fas fa-user-clock"></i>
+                          </button>
+                          <input
+                            className="mx-1 form-control"
+                            type="time"
+                            value={obj["checkin"]}
+                            disabled
+                          />
+                        </div>
+
+                        <div className="my-1 d-flex">
+                          <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Checkout time"
+                          >
+                            <i class="fas fa-user-clock"></i>
+                          </button>
+                          <input
+                            className="mx-1 form-control"
+                            type="time"
+                            value={obj["checkout"]}
+                            disabled
+                          />
+                        </div>
+
+                        <div className="my-1 d-flex">
+                          <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Attend"
+                          >
+                            <i class="fas fa-concierge-bell"></i>
+                          </button>
+                          <select
+                            className="form-select mx-1"
+                            value={obj["presenttype"]}
+                            disabled
+                          >
+                            <option value="PR">Present</option>
+                            <option value="AB">Absent</option>
+                          </select>
+                        </div>
+                      </div>
+                    </Fragment>
+                  ))}
+                </div>
+              </Fragment>
             )}
           </div>
         </div>

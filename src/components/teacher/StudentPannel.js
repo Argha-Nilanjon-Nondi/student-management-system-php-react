@@ -180,26 +180,62 @@ export default class TeacherPannel extends Component {
             </div>
           </div>
         ))}
-        <div className="container my-2 table-responsive">
+        <div className="container my-2">
           {this.state.loadingStatus ? (
             <LoadingBar></LoadingBar>
           ) : (
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Student Name</th>
-                  <th scope="col">User ID</th>
-                  <th scope="col">Roll</th>
-                  <th scope="col">Setting</th>
-                </tr>
-              </thead>
-              <tbody>
+            <div className="row my-2 gap-2 justify-content-center">
                 {this.state.studentList.map((obj) => (
-                  <tr key={obj.userid}>
-                    <td className="first-row-item">{obj.username}</td>
-                    <td>{obj.userid}</td>
-                    <td>{obj.roll}</td>
-                    <td>
+                  <div
+                    className="col-lg-4 col-11 border border-dark rounded px-1 py-1"
+                    key={obj.userid}
+                  >
+                    <div>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Roll"
+                      >
+                        {obj.roll}
+                      </button>
+                    </div>
+                    <div className="my-1 d-flex">
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Student Name"
+                      >
+                        <i class="far fa-user"></i>
+                      </button>
+                      <input
+                        className="mx-1 form-control"
+                        type="text"
+                        value={obj.username}
+                        disabled
+                      />
+                    </div>
+                    <div className="my-1 d-flex">
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Student user id"
+                      >
+                        <i class="far fa-id-card"></i>
+                      </button>
+                      <input
+                        className="mx-1 form-control"
+                        type="text"
+                        value={obj.userid}
+                        disabled
+                      />
+                    </div>
+                    <div className="my-1 d-flex justify-content-center">
                       <Link
                         to={`/user/teacher/profileStudent/${obj.roll}`}
                         className="btn btn-dark mx-1 my-1"
@@ -219,12 +255,11 @@ export default class TeacherPannel extends Component {
                         data-bs-target={`#cssid${obj.userid}`}
                       >
                         Delete
-                      </button>{" "}
-                    </td>
-                  </tr>
+                      </button>
+                    </div>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+            </div>
           )}
         </div>
       </Fragment>

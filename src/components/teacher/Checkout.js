@@ -26,18 +26,18 @@ export default class Checkout extends Component {
       {
         roll: this.state.roll,
         datetime: this.state.datetime,
-      }
+      },
     ];
     if (this.state.roll != 0 || this.state.datetime != "") {
       if (this.state.checkoutList.length == 0) {
         this.setState({
-          checkoutList: this.state.checkoutList.concat(singleData)
+          checkoutList: this.state.checkoutList.concat(singleData),
         });
       }
       this.state.checkoutList.map((obj) => {
         if (obj["roll"] != this.state.roll) {
           this.setState({
-            checkoutList: this.state.checkoutList.concat(singleData)
+            checkoutList: this.state.checkoutList.concat(singleData),
           });
         }
       });
@@ -169,60 +169,64 @@ export default class Checkout extends Component {
               Add
             </button>
           </form>
-          <div className="table-responsive">
-            <table className="table my-2">
-              <thead>
-                <tr>
-                  <th scope="col">Roll</th>
-                  <th scope="col">Date and Time</th>
-                  <th>Setting</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.checkoutList.map((obj) => (
-                  <tr key={obj["roll"]}>
-                    <td>
-                      <input
-                        type="number"
-                        className="form-control"
-                        value={obj["roll"]}
-                        disabled
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="datetime-local"
-                        className="form-control"
-                        value={obj["datetime"]}
-                        disabled
-                      />
-                    </td>
-                    <td>
-                      <button
-                        type="button"
-                        className="btn btn-dark mx-1 my-1"
-                        onClick={() =>
-                          this.addCheckoutInDB(
-                            obj["roll"],
-                            obj["datetime"],
-                            obj["attend"]
-                          )
-                        }
-                      >
-                        Checkout
-                      </button>
-                      <button
-                        type="button"
-                        className="btn btn-dark mx-1 my-1"
-                        onClick={() => this.deleteCheckoutFromState(obj)}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="row my-2 gap-2 justify-content-center">
+            {this.state.checkoutList.map((obj) => (
+              <div
+                className="col-lg-4 col-11 border border-dark rounded px-1 py-1"
+                key={obj["roll"]}
+              >
+                <div>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Roll"
+                  >
+                    {obj["roll"]}
+                  </button>
+                </div>
+                <div className="my-1 d-flex">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Checkout date and time"
+                  >
+                    <i class="far fa-clock"></i>
+                  </button>
+                  <input
+                    className="mx-1 form-control"
+                    type="datetime-local"
+                    value={obj["datetime"]}
+                    disabled
+                  />
+                </div>
+                <div className="my-1 d-flex justify-content-center">
+                  <button
+                    type="button"
+                    className="btn btn-dark mx-1 my-1"
+                    onClick={() =>
+                      this.addCheckoutInDB(
+                        obj["roll"],
+                        obj["datetime"],
+                        obj["attend"]
+                      )
+                    }
+                  >
+                    Checkout
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-dark mx-1 my-1"
+                    onClick={() => this.deleteCheckoutFromState(obj)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </Fragment>

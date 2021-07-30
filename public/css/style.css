@@ -4,7 +4,7 @@
 
 @media screen and (max-width:1000px) {
    .table-responsive{
-       overflow-y:scroll !important ;
+       width:95%;
    }
    .table{
        width: 150% !important;

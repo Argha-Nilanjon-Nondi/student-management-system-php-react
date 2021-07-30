@@ -131,62 +131,57 @@ export default class SeeBreaks extends Component {
           {this.state.loadingStatus ? (
             <LoadingBar></LoadingBar>
           ) : (
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Reason</th>
-                  <th scope="col">Date And Time</th>
-                  <th scope="col">Current Status</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.breakList.map((obj) => (
-                  <tr key={obj.workdate}>
-                    <td className="first-row-item">{obj.reason}</td>
-                    <td>
-                      <input
-                        type="datetime-local"
-                        className="form-control"
-                        value={`${obj.workdate}T${obj.timetext}`}
-                        disabled
-                      />
-                    </td>
-                    <td>
-                      {obj.status === "pending" ? (
-                        <button className="btn btn-primary">Pending</button>
-                      ) : (
-                        ""
-                      )}
-                      {obj.status === "accept" ? (
-                        <button className="btn btn-success">Accept</button>
-                      ) : (
-                        ""
-                      )}
-                      {obj.status === "reject" ? (
-                        <button className="btn btn-danger">Reject</button>
-                      ) : (
-                        ""
-                      )}
-                    </td>
-                    <td>
-                      {obj.status === "pending" ? (
-                        <button
-                          className="btn btn-dark"
-                          onClick={() =>
-                            this.breakDelete(obj.workdate, obj.timetext)
-                          }
-                        >
-                          Delete
-                        </button>
-                      ) : (
-                        ""
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="row my-2 gap-2 justify-content-center">
+              {this.state.breakList.map((obj) => (
+                <div
+                  className="col-lg-4 col-11 border border-dark rounded px-1 py-1"
+                  key={obj.workdate}
+                >
+                  <div>
+                    {obj.status === "pending" ? (
+                      <button className="btn btn-primary">Pending</button>
+                    ) : (
+                      ""
+                    )}
+                    {obj.status === "accept" ? (
+                      <button className="btn btn-success">Accept</button>
+                    ) : (
+                      ""
+                    )}
+                    {obj.status === "reject" ? (
+                      <button className="btn btn-danger">Reject</button>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+
+                  <textarea className="form-control my-1">
+                    {obj.reason}
+                  </textarea>
+
+                  <input
+                    type="datetime-local"
+                    className="form-control my-1"
+                    value={`${obj.workdate}T${obj.timetext}`}
+                    disabled
+                  />
+                  <div className="my-1 d-flex justify-content-center">
+                    {obj.status === "pending" ? (
+                      <button
+                        className="btn btn-dark"
+                        onClick={() =>
+                          this.breakDelete(obj.workdate, obj.timetext)
+                        }
+                      >
+                        Delete
+                      </button>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
         </div>
       </Fragment>

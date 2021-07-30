@@ -180,47 +180,106 @@ export default class TeacherPannel extends Component {
             </div>
           </div>
         ))}
-        <div className="container my-2 d-flex align-items-center flex-column table-responsive px-1">
+        <div className="container my-2 px-1">
           {this.state.loadingStatus ? (
             <LoadingBar></LoadingBar>
           ) : (
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Teacher Name</th>
-                  <th scope="col">User ID</th>
-                  <th scope="col">Class</th>
-                  <th scope="col">Section</th>
-                  <th>Setting</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.teacherList.map((obj) => (
-                  <tr key={obj.userid}>
-                    <td className="first-row-item">{obj.username}</td>
-                    <td>{obj.userid}</td>
-                    <td>{obj.class}</td>
-                    <td>{obj.section}</td>
-                    <td>
-                      <Link
-                        to={`/user/admin/editTeacher/${obj.userid}`}
-                        className="btn btn-dark mx-1 my-1"
-                      >
-                        Update
-                      </Link>
-                      <button
-                        type="button"
-                        className="btn btn-dark mx-1 my-1"
-                        data-bs-toggle="modal"
-                        data-bs-target={`#cssid${obj.userid}`}
-                      >
-                        Delete
-                      </button>{" "}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="row my-2 gap-2 justify-content-center">
+              {this.state.teacherList.map((obj) => (
+                <div
+                  className="col-lg-4 col-11 border border-dark rounded px-1 py-1"
+                  key={obj.userid}
+                >
+                  <div className="my-1 d-flex">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Teacher Name"
+                    >
+                      <i class="far fa-user"></i>
+                    </button>
+                    <input
+                      className="mx-1 form-control"
+                      type="text"
+                      value={obj.username}
+                      disabled
+                    />
+                  </div>
+                  <div className="my-1 d-flex">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Teacher user id"
+                    >
+                      <i class="far fa-id-card"></i>
+                    </button>
+                    <input
+                      className="mx-1 form-control"
+                      type="text"
+                      value={obj.userid}
+                      disabled
+                    />
+                  </div>
+
+                  <div className="my-1 d-flex">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Teacher's class"
+                    >
+                      <i class="fas fa-user-graduate"></i>
+                    </button>
+                    <input
+                      className="mx-1 form-control"
+                      type="text"
+                      value={obj.class}
+                      disabled
+                    />
+                  </div>
+
+                  <div className="my-1 d-flex">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Teacher's section"
+                    >
+                      <i class="fas fa-chalkboard"></i>
+                    </button>
+                    <input
+                      className="mx-1 form-control"
+                      type="text"
+                      value={obj.section}
+                      disabled
+                    />
+                  </div>
+
+                  <div className="my-1 d-flex justify-content-center">
+                    <Link
+                      to={`/user/admin/editTeacher/${obj.userid}`}
+                      className="btn btn-dark mx-1 my-1"
+                    >
+                      Update
+                    </Link>
+                    <button
+                      type="button"
+                      className="btn btn-dark mx-1 my-1"
+                      data-bs-toggle="modal"
+                      data-bs-target={`#cssid${obj.userid}`}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
         </div>
       </Fragment>
