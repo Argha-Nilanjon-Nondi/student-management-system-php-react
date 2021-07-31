@@ -5,23 +5,25 @@ export default class Alert extends Component {
         super(props)
     
         this.state = {
-             showStatus:true
+            display:"block"
         }
     }
 
-
-    changeStatus=()=>{
-        this.setState({
-            showStatus:false
-        })
+    componentDidMount=()=>{
+        setTimeout(()=>{
+         this.setState({display:"none"})
+        },3000);
     }
     
     render() {
         return (
-        <div className={`alert alert-${this.props.type} alert-dismissible fade ${this.state.showStatus?"show":"hide-alert"}` } role="alert">
-          <strong>{this.props.symbol}</strong> {this.props.text}
-          <button type="button" className="btn-close" aria-label="Close" onClick={this.changeStatus}></button>
-        </div>
-        )
+          <div
+            className={`alert alert-${this.props.type} alert-dismissible custom-alert`}
+            role="alert"
+            style={{display:this.state.display}}
+          >
+            <strong>{this.props.symbol}</strong> {this.props.text}
+          </div>
+        );
     }
 }

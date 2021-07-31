@@ -11,6 +11,7 @@ import UpdateTeacher from '../admin/UpdateTeacher';
 import AddTeacher from '../admin/AddTeacher';
 import ChangePassword from '../ChangePassword';
 import Logout from '../Logout';
+import TeacherProfile from '../admin/TeacherProfile';
 export default function Admin(props){
   const {path}=useRouteMatch();
         return (
@@ -88,11 +89,14 @@ export default function Admin(props){
               </div>
             </nav>
             <Switch>
-              <Route exact path={[`${path}/teacher`,`${path}/`]}>
+              <Route exact path={[`${path}/teacher`, `${path}/`]}>
                 <TeacherPannel></TeacherPannel>
               </Route>
               <Route exact path={`${path}/editTeacher/:userid`}>
                 <UpdateTeacher></UpdateTeacher>
+              </Route>
+              <Route exact path={`${path}/teacherProfile/:userid`}>
+                <TeacherProfile></TeacherProfile>
               </Route>
               <Route exact path={`${path}/addTeacher`}>
                 <AddTeacher></AddTeacher>

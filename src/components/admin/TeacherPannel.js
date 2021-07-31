@@ -193,12 +193,12 @@ export default class TeacherPannel extends Component {
                   <div className="my-1 d-flex">
                     <button
                       type="button"
-                      class="btn btn-primary"
+                      className="btn btn-primary"
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                       title="Teacher Name"
                     >
-                      <i class="far fa-user"></i>
+                      <i className="far fa-user"></i>
                     </button>
                     <input
                       className="mx-1 form-control"
@@ -210,12 +210,12 @@ export default class TeacherPannel extends Component {
                   <div className="my-1 d-flex">
                     <button
                       type="button"
-                      class="btn btn-primary"
+                      className="btn btn-primary"
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                       title="Teacher user id"
                     >
-                      <i class="far fa-id-card"></i>
+                      <i className="far fa-id-card"></i>
                     </button>
                     <input
                       className="mx-1 form-control"
@@ -228,12 +228,12 @@ export default class TeacherPannel extends Component {
                   <div className="my-1 d-flex">
                     <button
                       type="button"
-                      class="btn btn-primary"
+                      className="btn btn-primary"
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                       title="Teacher's class"
                     >
-                      <i class="fas fa-user-graduate"></i>
+                      <i className="fas fa-user-graduate"></i>
                     </button>
                     <input
                       className="mx-1 form-control"
@@ -246,12 +246,12 @@ export default class TeacherPannel extends Component {
                   <div className="my-1 d-flex">
                     <button
                       type="button"
-                      class="btn btn-primary"
+                      className="btn btn-primary"
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                       title="Teacher's section"
                     >
-                      <i class="fas fa-chalkboard"></i>
+                      <i className="fas fa-chalkboard"></i>
                     </button>
                     <input
                       className="mx-1 form-control"
@@ -262,6 +262,12 @@ export default class TeacherPannel extends Component {
                   </div>
 
                   <div className="my-1 d-flex justify-content-center">
+                    <Link
+                      to={`/user/admin/teacherProfile/${obj.userid}`}
+                      className="btn btn-dark mx-1 my-1"
+                    >
+                      Profile
+                    </Link>
                     <Link
                       to={`/user/admin/editTeacher/${obj.userid}`}
                       className="btn btn-dark mx-1 my-1"
