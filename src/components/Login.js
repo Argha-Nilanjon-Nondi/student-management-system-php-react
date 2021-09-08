@@ -99,7 +99,7 @@ export default class Login extends Component {
             </div>
             
             {
-                this.state.passwordIncorrect?<p className="fs-5 text-center text-danger incorrect-password">Password is incorrect</p>:""
+                this.state.passwordIncorrect?<p className="fs-5 text-center text-danger incorrect-password">Email or password is incorrect</p>:""
             }
             {
                 this.state.networkProblem?<p className="fs-5 text-center text-danger incorrect-password">Problem in the netwok</p>:""

@@ -216,7 +216,7 @@ export default class StudentProfile extends Component {
                   <div className="col">
                     <input
                       type="text"
-                      value={this.state.username}
+                      defaultValue={this.state.username}
                       className="form-control"
                       disabled
                     />
@@ -233,7 +233,7 @@ export default class StudentProfile extends Component {
                   <div className="col">
                     <input
                       type="text"
-                      value={this.state.userid}
+                      defaultValue={this.state.userid}
                       className="form-control"
                       disabled
                     />
@@ -250,7 +250,7 @@ export default class StudentProfile extends Component {
                   <div className="col">
                     <input
                       type="text"
-                      value={this.state.email}
+                      defaultValue={this.state.email}
                       className="form-control"
                       disabled
                     />
@@ -267,7 +267,7 @@ export default class StudentProfile extends Component {
                   <div className="col">
                     <input
                       type="text"
-                      value={this.state.roll}
+                      defaultValue={this.state.roll}
                       className="form-control"
                       disabled
                     />
@@ -284,7 +284,7 @@ export default class StudentProfile extends Component {
                   <div className="col">
                     <input
                       type="text"
-                      value={this.state.contactno}
+                      defaultValue={this.state.contactno}
                       className="form-control"
                       disabled
                     />
@@ -304,7 +304,7 @@ export default class StudentProfile extends Component {
                   {this.state.breakList.map((obj) => (
                     <div
                       className="col-lg-3 col-11 border border-dark rounded px-1 py-1"
-                      key={obj.workdate}
+                      key={Math.random()}
                     >
                       <div>
                         {obj.status === "pending" ? (
@@ -324,14 +324,13 @@ export default class StudentProfile extends Component {
                         )}
                       </div>
 
-                      <textarea className="form-control my-1">
-                        {obj.reason}
+                      <textarea className="form-control my-1" defaultValue={obj.reason}>
                       </textarea>
 
                       <input
                         type="datetime-local"
                         className="form-control my-1"
-                        value={`${obj.workdate}T${obj.timetext}`}
+                        defaultValue={`${obj.workdate}T${obj.timetext}`}
                         disabled
                       />
                     </div>
@@ -356,6 +355,7 @@ export default class StudentProfile extends Component {
                         tabIndex="-1"
                         aria-labelledby="exampleModalLabel"
                         aria-hidden="true"
+                        key={Math.random()}
                       >
                         <div className="modal-dialog">
                           <div className="modal-content">
@@ -402,22 +402,22 @@ export default class StudentProfile extends Component {
                       </div>
                       <div
                         className="col-lg-3 col-11 border border-dark rounded px-1 py-1"
-                        key={""}
+                        key={Math.random()}
                       >
                         <div className="my-1 d-flex">
                           <button
                             type="button"
-                            class="btn btn-primary"
+                            className="btn btn-primary"
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             title="Checkin date"
                           >
-                            <i class="far fa-clock"></i>
+                            <i className="far fa-clock"></i>
                           </button>
                           <input
                             className="mx-1 form-control"
                             type="date"
-                            value={obj["workdate"]}
+                            defaultValue={obj["workdate"]}
                             disabled
                           />
                         </div>
@@ -425,17 +425,17 @@ export default class StudentProfile extends Component {
                         <div className="my-1 d-flex">
                           <button
                             type="button"
-                            class="btn btn-primary"
+                            className="btn btn-primary"
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             title="Checkin time"
                           >
-                            <i class="fas fa-user-clock"></i>
+                            <i className="fas fa-user-clock"></i>
                           </button>
                           <input
                             className="mx-1 form-control"
                             type="time"
-                            value={obj["checkin"]}
+                            defaultValue={obj["checkin"]}
                             disabled
                           />
                         </div>
@@ -443,38 +443,47 @@ export default class StudentProfile extends Component {
                         <div className="my-1 d-flex">
                           <button
                             type="button"
-                            class="btn btn-primary"
+                            className="btn btn-primary"
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             title="Checkout time"
                           >
-                            <i class="fas fa-user-clock"></i>
+                            <i className="fas fa-user-clock"></i>
                           </button>
-                          <input
-                            className="mx-1 form-control"
-                            type="time"
-                            value={obj["checkout"]}
-                            disabled
-                          />
+                          {obj["checkout"] === "00:00:20" ? (
+                            <input
+                              className="mx-1 form-control"
+                              type="text"
+                              defaultValue="Never Checkout"
+                              disabled
+                            />
+                          ) : (
+                            <input
+                              className="mx-1 form-control"
+                              type="time"
+                              defaultValue={obj["checkout"]}
+                              disabled
+                            />
+                          )}
                         </div>
 
                         <div className="my-1 d-flex">
                           <button
                             type="button"
-                            class="btn btn-primary"
+                            className="btn btn-primary"
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             title="Attend"
                           >
-                            <i class="fas fa-concierge-bell"></i>
+                            <i className="fas fa-concierge-bell"></i>
                           </button>
                           <select
                             className="form-select mx-1"
-                            value={obj["presenttype"]}
+                            defaultValue={obj["presenttype"]}
                             disabled
                           >
-                            <option value="PR">Present</option>
-                            <option value="AB">Absent</option>
+                            <option defaultValue="PR">Present</option>
+                            <option defaultValue="AB">Absent</option>
                           </select>
                         </div>
 

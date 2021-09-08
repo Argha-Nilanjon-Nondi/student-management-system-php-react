@@ -8,12 +8,6 @@ export default class Alert extends Component {
             display:"block"
         }
     }
-
-    componentDidMount=()=>{
-        setTimeout(()=>{
-         this.setState({display:"none"})
-        },3000);
-    }
     
     render() {
         return (

@@ -205,13 +205,13 @@ export default class Checkin extends Component {
           <div className="row my-2 gap-2 justify-content-center">
             {this.state.checkinList.map((obj) => (
               <div
-                className="col-lg-3 col-11 border border-dark rounded px-1 py-1"
+                className="col-lg-4 col-11 border border-dark rounded px-1 py-1"
                 key={""}
               >
                 <div>
                   <button
                     type="button"
-                    class="btn btn-primary"
+                    className="btn btn-primary"
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     title="Roll"
@@ -222,12 +222,12 @@ export default class Checkin extends Component {
                 <div className="my-1 d-flex">
                   <button
                     type="button"
-                    class="btn btn-primary"
+                    className="btn btn-primary"
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     title="Checkin date and time"
                   >
-                    <i class="far fa-clock"></i>
+                    <i className="far fa-clock"></i>
                   </button>
                   <input
                     className="mx-1 form-control"
@@ -239,12 +239,12 @@ export default class Checkin extends Component {
                 <div className="my-1 d-flex">
                   <button
                     type="button"
-                    class="btn btn-primary"
+                    className="btn btn-primary"
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     title="Attend"
                   >
-                    <i class="fas fa-concierge-bell"></i>
+                    <i className="fas fa-concierge-bell"></i>
                   </button>
                   <select
                     className="form-select mx-1"
@@ -258,7 +258,7 @@ export default class Checkin extends Component {
                 <div className="my-1 d-flex justify-content-center">
                   <button
                     type="button"
-                    class="btn btn-dark"
+                    className="btn btn-dark"
                     onClick={() =>
                       this.addCheckinInDB(
                         obj["roll"],
@@ -271,7 +271,7 @@ export default class Checkin extends Component {
                   </button>
                   <button
                     type="button"
-                    class="btn btn-dark mx-1"
+                    className="btn btn-dark mx-1"
                     onClick={() => this.deleteCheckinFromState(obj)}
                   >
                     Delete
