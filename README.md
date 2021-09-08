@@ -35,6 +35,20 @@ https://fontawesome.com/
 
 <br>
 
+## Deployment
+
+### To run the project
+
+```bash
+npm start
+```
+<br>
+
+## Installation
+### you need to setup this [student-management-system](https://github.com/Argha-Nilanjon-Nondi/student-management-system) repo as a backend in order to run this this repo 
+
+<br>
+
 ## Admin
 ### To login go to http://localhost:3000/login/
 ```email
