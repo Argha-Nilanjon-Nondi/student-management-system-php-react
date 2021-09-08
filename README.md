@@ -1,70 +1,126 @@
-# Getting Started with Create React App
+# Student Management System (Frontend)
+### It is a frontend of student management system.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
+- Easy to use
+- Good UI
+- One device login
+- User friendly
+- Has admin,teacher and student section
 
-## Available Scripts
+<br>
 
-In the project directory, you can run:
+## Build with
+- HTML5
+- CSS3
+- Javascript
+- ES6
+- ReactJS
+- React-Router
+- Axios
+- Bootstrap 5
+- Font Awesome
 
-### `npm start`
+<br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Related links
+https://www.w3schools.com/html/
+https://www.w3schools.com/css/
+https://developer.mozilla.org/en-US/docs/Web/JavaScript
+https://reactjs.org/
+https://reactrouter.com/
+https://www.npmjs.com/package/axios
+https://getbootstrap.com/docs/5.0/getting-started/introduction/
+https://fontawesome.com/
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br>
 
-### `npm test`
+## Admin
+### To login go to http://localhost:3000/login/
+```email
+email: admin@gmail.com
+password: avunix9143
+```
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/admin_login.png?raw=true)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Admin home page
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/admin_home.png?raw=true)
 
-### `npm run build`
+### Add a teacher
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/admin_teacher_add.png?raw=true)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Update a teacher
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/admin_teacher_update.png?raw=true)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### View teacher's profile
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/admin_teacher_profile.png?raw=true)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Change password
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/admin_change_password.png?raw=true)
+<br>
 
-### `npm run eject`
+## Teacher
+### To login go to http://localhost:3000/login/
+```email
+email: teacher0@gmail.com
+password: avunix9143
+```
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/teacher_login.png?raw=true)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Own profile
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/teacher_profile_own.png?raw=true)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Add a student
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/teacher_add_student.png?raw=true)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Add a checkin
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/teacher_add_checkin.png?raw=true)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Add a checkout
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/teacher_add_checkout.png?raw=true)
 
-## Learn More
+### Update check
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/teacher_update_check.png?raw=true)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Update student profile
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/teacher_update_student.png?raw=true)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Delete student profile
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/teacher_delete_student.png?raw=true)
 
-### Code Splitting
+### Watch student's list
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/teacher_student_list.png?raw=true)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Watch student's break list and change it's status
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/teacher_breaklist.png?raw=true)
 
-### Analyzing the Bundle Size
+### Change password
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/teacher_change_password.png?raw=true)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<br>
 
-### Making a Progressive Web App
+## Student
+### To login go to http://localhost:3000/login/
+```email
+email: student10@gmail.com
+password: avunix9143
+```
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/student_login.png?raw=true)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### View own profile
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/student_profile.png?raw=true)
 
-### Advanced Configuration
+### Break list
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/student_break_list.png?raw=true)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Request a break
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/student_request_break.png?raw=true)
 
-### Deployment
+### Change password
+![AppScreenshort](https://github.com/Argha-Nilanjon-Nondi/student-management-system-php-react/blob/master/screenshorts/student_change_password.png?raw=true)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<br>
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+- You can't use it for commercial usage
+- You can use it just for eductional usage
